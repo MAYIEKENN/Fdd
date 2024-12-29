@@ -17,7 +17,7 @@ app = Flask(__name__)
 firebase_key = json.loads(os.getenv('Fire'))
 cred = credentials.Certificate(firebase_key)
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://myid-9e87b-default-rtdb.asia-southeast1.firebasedatabase.app/'
+    'databaseURL': 'https://myid-9e87b-default-rtdb.asia-southeast1.firebasedatabase.app'
 })
 
 # Reference to the root of the database
