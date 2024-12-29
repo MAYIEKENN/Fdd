@@ -16,7 +16,7 @@ app = Flask(__name__)
 # Initialize Firebase Admin SDK
 cred = credentials.Certificate('serviceAccountKey.json')
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://myid-networktest-default-rtdb.asia-southeast1.firebasedatabase.app/'
+    'databaseURL': 'https://myid-9e87b-default-rtdb.asia-southeast1.firebasedatabase.app/'
 })
 
 # Reference to the root of the database
