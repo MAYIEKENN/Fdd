@@ -17,7 +17,7 @@ app = Flask(__name__)
 firebase_key = json.loads(os.getenv('Fire'))
 cred = credentials.Certificate(firebase_key)
 firebase_admin.initialize_app(cred, {
-    'databaseURL': 'https://myid-9e87b-default-rtdb.asia-southeast1.firebasedatabase.app'
+    'databaseURL': 'https://myid-9e87b-default-rtdb.asia-southeast1.firebasedatabase.app/'
 })
 
 # Reference to the root of the database
@@ -387,7 +387,7 @@ def create_account():
     users_ref = db.reference('users')
 
     # Check if the username already exists
-    users_data = users_ref.get()
+    users_data = users_ref.get() or {}
     for user_key, user_info in users_data.items():
         if user_info.get('username') == username:
             return jsonify({"message": "Username already exists"}), 409
@@ -401,6 +401,7 @@ def create_account():
     })
 
     return jsonify({"message": "Account created successfully"}), 201
+
 
 # Route to change the password for an existing account
 @app.route('/changePassword', methods=['POST'])
