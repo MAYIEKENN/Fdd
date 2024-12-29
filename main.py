@@ -14,7 +14,8 @@ from requests.structures import CaseInsensitiveDict
 app = Flask(__name__)
 
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate('serviceAccountKey.json')
+firebase_key = json.loads(os.getenv('Fire'))
+cred = credentials.Certificate(firebase_key)
 firebase_admin.initialize_app(cred, {
     'databaseURL': 'https://myid-9e87b-default-rtdb.asia-southeast1.firebasedatabase.app/'
 })
