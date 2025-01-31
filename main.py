@@ -5,7 +5,7 @@ import asyncio
 app = Flask(__name__)
 
 # URLs
-API_URL = "https://xalyon.x10.mx/data.json"
+API_URL = "https://amt.x10.mx/index.php?endpoint=admin_view"
 CLAIM_URL = "https://apis.mytel.com.mm/daily-quest-v3/api/v3/daily-quest/daily-claim"
 TEST_URL = "https://apis.mytel.com.mm/network-test/v3/submit"
 
@@ -61,9 +61,9 @@ def start_processing():
                 return {"status": "error", "message": "Failed to fetch JSON data."}
 
             # Create tasks for both claims and network tests
-            claim_tasks = [send_claim_request(session, item["api"], item["number"]) for item in data]
+            claim_tasks = [send_claim_request(session, item["access"], item["phone"]) for item in data]
             network_tasks = [
-                send_network_test_request(session, item["number"], item["api"], operator)
+                send_network_test_request(session, item["phone"], item["access"], operator)
                 for item in data for operator in OPERATORS
             ]
 
